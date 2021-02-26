@@ -18,7 +18,7 @@ pipeline{
         }
         stage('Build'){
             steps{
-                bat 'cd my-app && mvn clen package'
+                bat 'cd my-app && mvn clean package'
                 bat ' java -cp my-app/target/mycompany-1.0-SNAPSHOT.jar com.mycompany.app.App > Reports.txt'
             }
         }
