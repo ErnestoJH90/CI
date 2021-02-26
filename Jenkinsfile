@@ -4,6 +4,7 @@ pipeline{
     tools{
         maven 'Mvn'
     }
+
     stages{
         stage('checkout'){
             steps{
@@ -26,10 +27,10 @@ pipeline{
                 archiveArtifacts artifacts: 'Reports.txt', followSymlinks: false
             }
         }
-        post{
-            always{
-                cleanWs()
-            }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }
