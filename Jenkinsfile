@@ -18,7 +18,7 @@ pipeline{
         }
         stage('Build'){
             steps{
-                bat 'cd my-Demo && mvn clean package'
+                bat 'cd Demo && mvn clean package'
                 bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
             }
         }
