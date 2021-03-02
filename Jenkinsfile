@@ -18,8 +18,8 @@ pipeline{
         }
         stage('Build'){
             steps{
-                bat 'cd my-app && mvn clean package'
-                bat 'java -cp mycompany/target/mycompany-1.0-SNAPSHOT.jar com.mycompany.app.App > Reports.txt'
+                bat 'cd my-Demo && mvn clean package'
+                bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
             }
         }
         stage('Delivery'){
