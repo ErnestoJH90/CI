@@ -25,9 +25,9 @@ pipeline{
         stage('SonarQube Scanner'){
             steps{
                 script{
-                    def scannerHome = tool 'SonarQube Scanner' 
+                    def scannerHome = tool 'SonarQubeScanner'
                     withSonarQubeEnv('SonarQube'){
-                        bat '${tool('SonarQube Scanner')}/bin/sonar-scanner.bat -Dsonar.projectKey=Demo -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=7a9bc05e45a342efda0ddc1c9ceaf9a33e9fe497'
+                        bat "${tool('SonarQubeScanner')}/bin/sonar-scanner.bat -Dsonar.projectKey=Demo -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=7a9bc05e45a342efda0ddc1c9ceaf9a33e9fe497"
                     }
                 }
             }
