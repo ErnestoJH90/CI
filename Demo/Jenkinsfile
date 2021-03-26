@@ -32,6 +32,7 @@ pipeline{
                         -Dsonar.projectKey=CI \
                         -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.login=ab0aaa5a2f0a92e0b97bf2e4686c221ae43859d5'
+                        bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
                     }
                 }
             }
