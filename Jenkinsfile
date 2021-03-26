@@ -28,8 +28,8 @@ pipeline{
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('SonarQube'){
                         bat "${tool('SonarQubeScanner')}/bin/sonar-scanner.bat -Dsonar.projectKey=CI -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=ab0aaa5a2f0a92e0b97bf2e4686c221ae43859d5"
-                        mvn sonar:sonar \
-                        '-Dsonar.projectKey=CI \
+                        bat 'mvn sonar:sonar \
+                        -Dsonar.projectKey=CI \
                         -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.login=ab0aaa5a2f0a92e0b97bf2e4686c221ae43859d5'
                     }
