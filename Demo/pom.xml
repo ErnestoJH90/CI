@@ -81,7 +81,7 @@
         </dependency>
         </dependencies>
         </plugin>
-        <Plugin>
+        <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
           <versión>3.6.3</>
