@@ -8,9 +8,6 @@
   <artifactId>Demo</artifactId>
   <version>1.0-SNAPSHOT</version>
   
-  <groupId>org.sonarqube</groupId>
-  <artefactoId>sonarscanner</artifactId>
-  <versión>1.0-SNAPSHOT</>
 
   <name>Demo</name>
   <!-- FIXME change it to the project's website -->
