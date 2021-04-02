@@ -28,12 +28,7 @@ pipeline{
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('SonarQube'){
                         bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
-                        //bat "${tool('SonarQubeScanner')}/bin/sonar-scanner.bat -Dsonar.projectKey=CI -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=ab0aaa5a2f0a92e0b97bf2e4686c221ae43859d5"
                         bat 'mvn clean verify sonar:sonar'
-                        //bat 'mvn sonar:sonar \
-                          //  -Dsonar.projectKey=CI \
-                            //-Dsonar.host.url=http://localhost:9000 \
-                            //-Dsonar.login=ab0aaa5a2f0a92e0b97bf2e4686c221ae43859d5'
                         bat  'mvn sonar:sonar \
                             -Dsonar.projectKey=com.Demo:Demo \
                             -Dsonar.host.url=http://localhost:9000 \
@@ -50,9 +45,9 @@ pipeline{
             }
         }
     }
-    //post {
-       // always {
-         //   cleanWs()
-        //}
-    //}
+    post {
+        always {
+            cleanWs()
+        }
+    }
 }
