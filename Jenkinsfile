@@ -42,6 +42,10 @@ pipeline{
         stage('Delivery'){
             steps{
                 archiveArtifacts artifacts: 'Reports.txt', followSymlinks: false
+            }
+        }
+        stage('E-mail'){
+            steps{
                 emailext body: '''Hello everyone
                 The scanning report is generated''', subject: 'reports', to: 'ernesto.jimenez@softtek.com'
             }
