@@ -27,8 +27,8 @@ pipeline{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('SonarQube'){
-                        bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
-                        bat 'mvn clean verify sonar:sonar'
+                        //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
+                        //bat 'mvn clean verify sonar:sonar'
                         bat  'mvn sonar:sonar \
                             -Dsonar.projectKey=com.Demo:Demo \
                             -Dsonar.host.url=http://localhost:9000 \
