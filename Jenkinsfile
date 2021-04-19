@@ -33,7 +33,7 @@ pipeline{
                             -Dsonar.projectKey=com.Demo:Demo \
                             -Dsonar.host.url=http://localhost:9000 \
                             -Dsonar.login=c2be13a57c076853c36ce321a8d5061d15c71419' 
-                        //bat 'mvn clean package sonar:sonar'
+                        bat 'mvn clean package sonar:sonar'
 
                     }
                 }
