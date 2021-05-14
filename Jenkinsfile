@@ -27,12 +27,12 @@ pipeline{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('SonarQube'){
-                        //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
-                        //bat 'mvn clean verify sonar:sonar'
-                        bat  'mvn sonar:sonar \
-                            -Dsonar.projectKey=com.Demo:Demo \
+                        bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
+                        bat 'mvn clean verify sonar:sonar'
+                        bat 'mvn sonar:sonar \
+                            -Dsonar.projectKey=CI \
                             -Dsonar.host.url=http://localhost:9000 \
-                            -Dsonar.login=c2be13a57c076853c36ce321a8d5061d15c71419' 
+                            -Dsonar.login=c2be13a57c076853c36ce321a8d5061d15c71419'
                         bat 'mvn clean package sonar:sonar'
 
                     }
