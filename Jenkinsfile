@@ -32,7 +32,7 @@ pipeline{
                         bat 'mvn sonar:sonar \
                             -Dsonar.projectKey=CI \
                             -Dsonar.host.url=http://localhost:9000 \
-                            -Dsonar.login=c2be13a57c076853c36ce321a8d5061d15c71419'
+                            -Dsonar.login=87adf83b237138ad1084993059b12735a75bd04b'
                         bat 'mvn clean package sonar:sonar'
 
                     }
