@@ -10,8 +10,8 @@
   
 
   <name>Demo</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.google.com.mx</url> 
+  
+  <url>http://www.google.com.mx</url> <!--change it to the project's website-->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
