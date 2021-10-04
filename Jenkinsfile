@@ -26,7 +26,7 @@ pipeline{
             def mvn = tool 'Default Maven';
             withSonarQubeEnv() {
                 bat "${mvn}/bin/mvn clean verify sonar:sonar"
-           }
+            }
         }
         stage('SonarQube Scanner'){
             steps{
