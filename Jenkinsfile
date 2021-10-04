@@ -22,6 +22,12 @@ pipeline{
                 bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
             }
         }
+        stage('SonarQube Analysis') {
+            def mvn = tool 'Default Maven';
+            withSonarQubeEnv() {
+                bat "${mvn}/bin/mvn clean verify sonar:sonar"
+           }
+        }
         stage('SonarQube Scanner'){
             steps{
                 script{
