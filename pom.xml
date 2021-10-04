@@ -19,6 +19,9 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
+  <properties>
+      <sonar.projectKey>ErnestoJH90_CI</sonar.projectKey>
+  </properties>
   
 
   <dependencies>
