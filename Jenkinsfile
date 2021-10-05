@@ -32,7 +32,7 @@ pipeline{
                                 -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f \
                                 -Dsonar.projectKey=CI \
                                 -Dsonar.java.libraries=. \
-                                -Dsonar.java.binaries=tmp \
+                                -Dsonar.java.binaries=/tmp \
                                 -Dsonar.language=java,js'
                         //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
                         //bat 'mvn clean verify sonar:sonar'
