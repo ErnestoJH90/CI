@@ -49,13 +49,13 @@ pipeline{
                 always{
                     dir("${WORKSPACE}") {
                         success {
-                            to:'ernesto.jimenez@softtek.com',
-                            subject:'Test-SonarQube',
+                            to:"ernesto.jimenez@softtek.com",
+                            subject:"Test-SonarQube",
                             body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: ${SonarQubeUrl}"
                         }
                         failure {
-                            to:'ernesto.jimenez@softtek.com',
-                            subject:'Test-SonarQube',
+                            to:"ernesto.jimenez@softtek.com",
+                            subject:"Test-SonarQube",
                             body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: ${SonarQubeUrl}"
                         }
                     }
