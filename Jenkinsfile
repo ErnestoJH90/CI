@@ -28,7 +28,8 @@ pipeline{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('SonarQube'){
-                        bat 'sonar-scanner.bat -X '
+                        bat 'sonar-scanner.bat -X -Dsonar.host.url=http://localhost:9000 \
+                            -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f'
                         //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
                         //bat 'mvn clean verify sonar:sonar'
                         //bat "${mvn}/bin/mvn clean verify sonar:sonar"
@@ -44,21 +45,23 @@ pipeline{
                     }
                 }
             }
-            //post {
-             //   always{
-               //     success {
-                 //       mail to: 'ernesto.jimenez@softtek.com',
-                   //     subject:'Test-SonarQube',
-                     //   body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
-                    //}
-                    //failure {
-                      //  mail to: 'ernesto.jimenez@softtek.com',
-                        //subject:'Test-SonarQube',
-                        //body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
-                    //}
+            post {
+                always{
+                    dir("${WORKSPACE}") {
+                        success {
+                            to: 'ernesto.jimenez@softtek.com',
+                            subject:'Test-SonarQube',
+                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: ${SonarQubeUrl}"
+                        }
+                        failure {
+                            to: 'ernesto.jimenez@softtek.com',
+                            subject:'Test-SonarQube',
+                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: ${SonarQubeUrl}"
+                        }
+                    }
                 }
-            //}
-        //}
+            }
+        }
         stage('Delivery'){
             steps{
                 archiveArtifacts artifacts: 'Reports.txt', followSymlinks: false
