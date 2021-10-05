@@ -31,7 +31,7 @@ pipeline{
                         //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
                         //bat 'mvn clean verify sonar:sonar'
                         //bat "${mvn}/bin/mvn clean verify sonar:sonar"
-                        bat 'mvn sonar:sonar \
+                        bat 'mvn sonar:sonar -X \
                             -Dsonar.projectKey=CI \
                             -Dsonar.java.binaries=/tmp \
                             -Dsonar.java.libraries=. \
