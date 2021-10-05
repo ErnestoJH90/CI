@@ -29,13 +29,31 @@ pipeline{
                     withSonarQubeEnv('SonarQube'){
                         //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
                         //bat 'mvn clean verify sonar:sonar'
+                        //bat "${mvn}/bin/mvn clean verify sonar:sonar"
                         bat 'mvn sonar:sonar \
                             -Dsonar.projectKey=CI \
+                            -Dsonar.java.binaries=/tmp \
+                            -Dsonar.java.libraries=. \
+                            -Dsonar.language=java,js \
                             -Dsonar.host.url=http://localhost:9000 \
-                            -Dsonar.login=87adf83b237138ad1084993059b12735a75bd04b'
-                        //bat 'mvn clean package sonar:sonar'
+                            -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f'
+                        bat 'mvn clean package sonar:sonar'
 
                     }
+                }
+            }
+            post {
+                success {
+                    mail to: 'ernesto.jimenez@softtek.com',
+                    cc:'ernestojimhui@gmail.com',
+                    subject:'Test-SonarQube',
+                    body:"Test-SonarQube is completed: $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                }
+                failure {
+                    mail to: 'ernesto.jimenez@softtek.com',
+                    cc:'ernestojimhui@gmail.com',
+                    subject:'Test-SonarQube',
+                    body:"Test-SonarQube is completed: $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
                 }
             }
         }
