@@ -46,12 +46,12 @@ pipeline{
             post {
                 always{
                     success {
-                        to: 'ernesto.jimenez@softtek.com',
+                        mail: 'ernesto.jimenez@softtek.com',
                         subject:'Test-SonarQube',
                         body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
                     }
                     failure {
-                        to: 'ernesto.jimenez@softtek.com',
+                        mail: 'ernesto.jimenez@softtek.com',
                         subject:'Test-SonarQube',
                         body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
                     }
@@ -65,8 +65,7 @@ pipeline{
         }
         stage('E-mail'){
             steps{
-                emailext body: '''Hello everyone
-                The scanning report is generated''', subject: 'reports', to: 'ernesto.jimenez@softtek.com'
+                emailext body: 'Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}', subject: 'test sonarqube', to: 'ernesto.jimenez@softtek.com'
             }
         }
     }
