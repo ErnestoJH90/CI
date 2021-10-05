@@ -43,21 +43,21 @@ pipeline{
                     }
                 }
             }
-            post {
-                always{
-                    success {
-                        mail: 'ernesto.jimenez@softtek.com',
-                        subject:'Test-SonarQube',
-                        body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
-                    }
-                    failure {
-                        mail: 'ernesto.jimenez@softtek.com',
-                        subject:'Test-SonarQube',
-                        body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
-                    }
+            //post {
+             //   always{
+               //     success {
+                 //       mail to: 'ernesto.jimenez@softtek.com',
+                   //     subject:'Test-SonarQube',
+                     //   body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
+                    //}
+                    //failure {
+                      //  mail to: 'ernesto.jimenez@softtek.com',
+                        //subject:'Test-SonarQube',
+                        //body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
+                    //}
                 }
-            }
-        }
+            //}
+        //}
         stage('Delivery'){
             steps{
                 archiveArtifacts artifacts: 'Reports.txt', followSymlinks: false
