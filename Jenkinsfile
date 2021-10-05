@@ -23,6 +23,9 @@ pipeline{
             }
         }
         stage('SonarQube Scanner'){
+            environment {
+                SonarQueUrl = SonarQubeUrl('http://localhost:9000')
+            }
             steps{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
@@ -43,17 +46,19 @@ pipeline{
                 }
             }
             post {
-                success {
-                    mail to: 'ernesto.jimenez@softtek.com',
-                    cc:'ernestojimhui@gmail.com',
-                    subject:'Test-SonarQube',
-                    body:"Test-SonarQube is completed:" //$WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
-                }
-                failure {
-                    mail to: 'ernesto.jimenez@softtek.com',
-                    cc:'ernestojimhui@gmail.com',
-                    subject:'Test-SonarQube',
-                    body:"Test-SonarQube is completed:"// $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                always{
+                    success {
+                        mail to: 'ernesto.jimenez@softtek.com',
+                        cc:'ernestojimhui@gmail.com',
+                        subject:'Test-SonarQube',
+                        body:"Test-SonarQube is completed:" //$WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                    }
+                    failure {
+                        mail to: 'ernesto.jimenez@softtek.com',
+                        cc:'ernestojimhui@gmail.com',
+                        subject:'Test-SonarQube',
+                        body:"Test-SonarQube is completed:"// $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                    }
                 }
             }
         }
