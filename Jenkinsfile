@@ -1,4 +1,4 @@
-def SonarQubeUrl = 'http://localhost:9000'
+def SonarQubeUrl = 'http://localhost:9000/dashboard?id='
 pipeline{
     agent any
     
@@ -28,6 +28,7 @@ pipeline{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('SonarQube'){
+                        bat 'sonar-scanner.bat -X '
                         //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
                         //bat 'mvn clean verify sonar:sonar'
                         //bat "${mvn}/bin/mvn clean verify sonar:sonar"
@@ -38,7 +39,7 @@ pipeline{
                             -Dsonar.language=java,js \
                             -Dsonar.host.url=http://localhost:9000 \
                             -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f'
-                        bat 'mvn clean package sonar:sonar'
+                        bat 'mvn clean package sonar:sonar -X'
 
                     }
                 }
