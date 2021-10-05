@@ -47,13 +47,13 @@ pipeline{
                     mail to: 'ernesto.jimenez@softtek.com',
                     cc:'ernestojimhui@gmail.com',
                     subject:'Test-SonarQube',
-                    body:"Test-SonarQube is completed: $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                    body:"Test-SonarQube is completed:" //$WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
                 }
                 failure {
                     mail to: 'ernesto.jimenez@softtek.com',
                     cc:'ernestojimhui@gmail.com',
                     subject:'Test-SonarQube',
-                    body:"Test-SonarQube is completed: $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                    body:"Test-SonarQube is completed:"// $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
                 }
             }
         }
