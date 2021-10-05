@@ -31,9 +31,10 @@ pipeline{
                         bat 'sonar-scanner.bat -X -Dsonar.host.url=http://localhost:9000 \
                                 -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f \
                                 -Dsonar.projectKey=CI \
-                                -Dsonar.java.libraries=. \
-                                -Dsonar.java.binaries=/tmp \
                                 -Dsonar.language=java,js'
+                                //-Dsonar.java.libraries=. \
+                                //-Dsonar.java.binaries=/tmp \
+                                
                         //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
                         //bat 'mvn clean verify sonar:sonar'
                         //bat "${mvn}/bin/mvn clean verify sonar:sonar"
