@@ -1,3 +1,4 @@
+def SonarQubeUrl = 'http://localhost:9000'
 pipeline{
     agent any
     
@@ -23,9 +24,6 @@ pipeline{
             }
         }
         stage('SonarQube Scanner'){
-            environment {
-                SonarQueUrl = SonarQubeUrl('http://localhost:9000')
-            }
             steps{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
@@ -48,16 +46,14 @@ pipeline{
             post {
                 always{
                     success {
-                        mail to: 'ernesto.jimenez@softtek.com',
-                        cc:'ernestojimhui@gmail.com',
+                        to: 'ernesto.jimenez@softtek.com',
                         subject:'Test-SonarQube',
-                        body:"Test-SonarQube is completed:" //$WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                        body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
                     }
                     failure {
-                        mail to: 'ernesto.jimenez@softtek.com',
-                        cc:'ernestojimhui@gmail.com',
+                        to: 'ernesto.jimenez@softtek.com',
                         subject:'Test-SonarQube',
-                        body:"Test-SonarQube is completed:"// $WORKSPACE, More details at: $SonarQubeUrl$ART_ID"
+                        body:"Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}"
                     }
                 }
             }
