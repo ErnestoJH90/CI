@@ -74,7 +74,7 @@ pipeline{
         }
         stage('E-mail'){
             steps{
-                emailext body: 'Test-SonarQube is completed: ${WORKSPACE}, More details at: ${SonarQubeUrl}', subject: 'test sonarqube', to: 'ernesto.jimenez@softtek.com'
+                emailext body: 'More details at: http://localhost:9000/dashboard?id=ErnestoJH90_CI', subject: 'Test-SonarQube', to: 'ernesto.jimenez@softtek.com'
             }
         }
     }
