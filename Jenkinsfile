@@ -8,11 +8,11 @@ pipeline{
     environment {
             //POM_FILE = readMavenPom()
             ART_VERSION = "${params.TAG}"
-            GRP_ID = POM_FILE.getGroupId()
+            //GRP_ID = POM_FILE.getGroupId()
             ART_ID = POM_FILE.getArtifactId()
-            RUNTIME_VERSION = "${POM_FILE.properties['app.runtime']}"
+            //RUNTIME_VERSION = "${POM_FILE.properties['app.runtime']}"
             VERSION_ID = POM_FILE.getVersion()
-            PACKAGING_ID = POM_FILE.getPackaging()
+            //PACKAGING_ID = POM_FILE.getPackaging()
             //DOWNLOAD_ARTIFACT_AUTH = credentials('DOWNLOAD_ARTIFACT_AUTH')
         }
     stages{
