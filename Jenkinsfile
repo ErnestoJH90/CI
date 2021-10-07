@@ -6,7 +6,7 @@ pipeline{
         maven 'Mvn'
     }
     environment {
-            POM_FILE = readMavenPom()
+            //POM_FILE = readMavenPom()
             ART_VERSION = "${params.TAG}"
             GRP_ID = POM_FILE.getGroupId()
             ART_ID = POM_FILE.getArtifactId()
