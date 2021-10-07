@@ -13,7 +13,7 @@ pipeline{
             RUNTIME_VERSION = "${POM_FILE.properties['app.runtime']}"
             VERSION_ID = POM_FILE.getVersion()
             PACKAGING_ID = POM_FILE.getPackaging()
-            DOWNLOAD_ARTIFACT_AUTH = credentials('DOWNLOAD_ARTIFACT_AUTH')
+            //DOWNLOAD_ARTIFACT_AUTH = credentials('DOWNLOAD_ARTIFACT_AUTH')
         }
     stages{
         stage('checkout'){
