@@ -6,17 +6,18 @@
 
   <groupId>com.Demo.app</groupId>
   <artifactId>Demo</artifactId>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   
-
+  
   <name>Demo</name>
   
   <url>http://www.google.com.mx</url> <!--change it to the project's website-->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   
@@ -28,11 +29,24 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.3.1</version>
+      <scope>test</scope>
+  </dependency>
   </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
+      <finalName>maven-unit-test</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+        <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

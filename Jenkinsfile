@@ -36,7 +36,7 @@ pipeline{
         stage('Unit test') {
             steps {
               //  configFileProvider([configFile(fileId: "${env.MV_CONF}", variable: 'MAVEN_SETTINGS')]) {
-                        bat "mvn test -s" //${MAVEN_SETTINGS}"
+                        bat "mvn test " //${MAVEN_SETTINGS}"
                   //      dir('target/site/munit/coverage') {
                         //publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './', reportFiles: 'summary.html', reportName: 'HTML Summary Report', reportTitles: 'Summary'])
                     //}
