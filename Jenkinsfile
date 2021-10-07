@@ -25,7 +25,6 @@ pipeline{
             steps{
                 bat 'mvn --version'
                 bat 'dotnet --version'
-                bat 'msbuild --version'
             }
         }
         stage('Build'){
