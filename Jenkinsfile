@@ -27,7 +27,7 @@ pipeline{
                 bat 'dotnet --version'
                 bat 'msbuild --version'
             }
-        //}
+        }
         //stage('Build'){
           //  steps{
             //    bat 'cd Demo && mvn clean package'
