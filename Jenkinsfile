@@ -1,11 +1,20 @@
-def SonarQubeUrl = 'http://localhost:9000/dashboard?id='
+
 pipeline{
     agent any
     
     tools{
         maven 'Mvn'
     }
-
+    environment {
+            POM_FILE = readMavenPom()
+            ART_VERSION = "${params.TAG}"
+            GRP_ID = POM_FILE.getGroupId()
+            ART_ID = POM_FILE.getArtifactId()
+            RUNTIME_VERSION = "${POM_FILE.properties['app.runtime']}"
+            VERSION_ID = POM_FILE.getVersion()
+            PACKAGING_ID = POM_FILE.getPackaging()
+            DOWNLOAD_ARTIFACT_AUTH = credentials('DOWNLOAD_ARTIFACT_AUTH')
+        }
     stages{
         stage('checkout'){
             steps {
@@ -43,17 +52,18 @@ pipeline{
             steps{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
+                    def SonarQubeUrl = 'http://localhost:9000/dashboard?id='; 
                     withSonarQubeEnv('SonarQube'){
-                        //bat 'sonar-scanner.bat -X -Dsonar.host.url=http://localhost:9000 \
-                          //      -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f \
-                            //    -Dsonar.projectKey=CI \
-                              //  -Dsonar.language=java,js \
-                                //-Dsonar.java.libraries=. \
-                                //-Dsonar.java.binaries=/tmp '
+                        bat 'sonar-scanner.bat -X -Dsonar.host.url=http://localhost:9000 \
+                                -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f \
+                                -Dsonar.projectKey=$ART_ID \
+                                -Dsonar.language=java,js \
+                                -Dsonar.java.libraries=. \
+                                -Dsonar.java.binaries=/tmp '
                                 
-                        //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
-                        //bat 'mvn clean verify sonar:sonar'
-                        //bat "${mvn}/bin/mvn clean verify sonar:sonar"
+                        bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
+                        bat 'mvn clean verify sonar:sonar'
+                        bat "${mvn}/bin/mvn clean verify sonar:sonar"
                         bat 'mvn sonar:sonar -X \
                                 -Dsonar.projectKey=CI \
                                 -Dsonar.sources=. \
@@ -62,11 +72,11 @@ pipeline{
                                 -Dsonar.language=java,js \
                                 -Dsonar.host.url=http://localhost:9000 \
                                 -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f'
-                        //bat 'mvn clean package sonar:sonar -X'
+                        bat 'mvn clean package sonar:sonar -X'
                     }
                 }
             }
-            /*post {
+            post {
                 always{
                     dir("${WORKSPACE}") {
                         success {
@@ -81,7 +91,7 @@ pipeline{
                         }
                     }
                 }
-            }*/
+            }
         }
         stage('Delivery'){
             steps{
