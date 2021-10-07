@@ -28,12 +28,12 @@ pipeline{
                 bat 'msbuild --version'
             }
         }
-        //stage('Build'){
-          //  steps{
-            //    bat 'cd Demo && mvn clean package'
-              //  bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
-            //}
-        //}
+        stage('Build'){
+            steps{
+                bat 'cd Demo && mvn clean package'
+                bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
+            }
+        }
         //stage('Unit test') {
           //  when {
                 //skip build
