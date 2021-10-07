@@ -33,22 +33,16 @@ pipeline{
                 bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
             }
         }
-        //stage('Unit test') {
-          //  when {
-                //skip build
-            //    not {
-              //      changelog '\\[nb\\]'
-                //}
-            //}
-            //steps {
+        stage('Unit test') {
+            steps {
               //  configFileProvider([configFile(fileId: "${env.MV_CONF}", variable: 'MAVEN_SETTINGS')]) {
-                //        bat "mvn test -s" //${MAVEN_SETTINGS}"
+                        bat "mvn test -s" //${MAVEN_SETTINGS}"
                   //      dir('target/site/munit/coverage') {
                         //publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './', reportFiles: 'summary.html', reportName: 'HTML Summary Report', reportTitles: 'Summary'])
                     //}
                 //}
-            //}
-        //}
+            }
+        }
         //stage('SonarQube Scanner'){
           //  steps{
             //    script{
