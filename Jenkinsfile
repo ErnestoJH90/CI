@@ -76,7 +76,7 @@ pipeline{
                     }
                 }
             }
-            post {
+            /*post {
                 always{
                     dir("${WORKSPACE}") {
                         success {
@@ -91,7 +91,7 @@ pipeline{
                         }
                     }
                 }
-            }
+            }*/
         }
         stage('Delivery'){
             steps{
