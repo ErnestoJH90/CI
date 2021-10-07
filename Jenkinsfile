@@ -21,10 +21,12 @@ pipeline{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'JenkinsDocker2', url: 'https://github.com/ErnestoJH90/CI.git']]])
             }
         }
-        //stage('Mvn version'){
-          //  steps{
-            //    bat 'mvn --version'
-            //}
+        stage('Mvn version'){
+            steps{
+                bat 'mvn --version'
+                bat 'dotnet --version'
+                bat 'msbuild --version'
+            }
         //}
         //stage('Build'){
           //  steps{
