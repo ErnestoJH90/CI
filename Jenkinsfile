@@ -43,35 +43,23 @@ pipeline{
                 //}
             }
         }
-        //stage('SonarQube Scanner'){
-          //  steps{
-            //    script{
-              //      def scannerHome = tool 'SonarQubeScanner';
-                //    def SonarQubeUrl = 'http://localhost:9000/dashboard?id=';
-                  //  def  
-                    //withSonarQubeEnv('SonarQube'){
-                      //  bat 'sonar-scanner.bat -X -Dsonar.host.url=http://localhost:9000 \
-                        //        -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f \
-                          //      -Dsonar.projectKey=$ART_ID \
-                            //    -Dsonar.language=java,js \
-                              //  -Dsonar.java.libraries=. \
-                                //-Dsonar.java.binaries=/tmp '
-                                
-                        //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
-                        //bat 'mvn clean verify sonar:sonar'
-                        //bat "${mvn}/bin/mvn clean verify sonar:sonar"
-                        //bat 'mvn sonar:sonar -X \
-                          //      -Dsonar.projectKey=CI \
-                            //    -Dsonar.sources=. \
-                              //  -Dsonar.java.binaries=/tmp \
-                                //-Dsonar.java.libraries=. \
-                                //-Dsonar.language=java,js \
-                                //-Dsonar.host.url=http://localhost:9000 \
-                                //-Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f'
-                        //bat 'mvn clean package sonar:sonar -X'
-                    //}
-                //}
-            //}
+        stage('SonarQube Scanner'){
+            steps{
+                script{
+                    def scannerHome = tool 'SonarQubeScanner';
+                    def SonarQubeUrl = 'http://localhost:9000/dashboard?id=';  
+                    withSonarQubeEnv('SonarQube'){
+                       bat 'sonar-scanner.bat -X  \
+                            -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f \
+                            -Dsonar.sources=Demo \
+                            -Dsonar.projectKey=CI \
+                            -Dsonar.language=java,js \
+                            -Dsonar.java.libraries=. \
+                            -Dsonar.java.binaries=/tmp \
+                            -Dsonar.host.url=http://localhost:9000 '
+                    }
+                }
+            }
             /*post {
                 always{
                     dir("${WORKSPACE}") {
