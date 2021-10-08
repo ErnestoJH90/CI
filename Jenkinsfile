@@ -77,11 +77,11 @@ pipeline{
                 }
             }*/
         }
-        //stage('Delivery'){
-          //  steps{
-                //archiveArtifacts artifacts: 'Reports.txt', followSymlinks: false
-            //}
-        //}
+        stage('Delivery'){
+            steps{
+                archiveArtifacts artifacts: 'Reports.txt', followSymlinks: false
+            }
+        }
         //stage('E-mail'){
           //  steps{
             //    emailext body: 'More details at: http://localhost:9000/dashboard?id=ErnestoJH90_CI', subject: 'Test-SonarQube', to: 'ernesto.jimenez@softtek.com'
