@@ -49,7 +49,7 @@ pipeline{
                     def scannerHome = tool 'SonarQubeScanner';
                     def SonarQubeUrl = 'http://localhost:9000/dashboard?id=';  
                     withSonarQubeEnv('SonarQube'){
-                       bat 'sonar-scanner.bat -X  \
+                       bat 'mvn clean verify sonar:sonar \
                             -Dsonar.login=5c0c630e47d1263d7480869ee2a2d84afcb4096b \
                             -Dsonar.sources=Demo \
                             -Dsonar.projectKey=CI \
