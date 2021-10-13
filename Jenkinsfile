@@ -4,7 +4,16 @@ pipeline{
     tools{
         maven 'Mvn'
     }
-
+    //environment {
+            //POM_FILE = readMavenPom()
+            //ART_VERSION = "${params.TAG}"
+            //GRP_ID = POM_FILE.getGroupId()
+            //ART_ID = POM_FILE.getArtifactId()
+            //RUNTIME_VERSION = "${POM_FILE.properties['app.runtime']}"
+            //VERSION_ID = POM_FILE.getVersion()
+            //PACKAGING_ID = POM_FILE.getPackaging()
+            //DOWNLOAD_ARTIFACT_AUTH = credentials('DOWNLOAD_ARTIFACT_AUTH')
+      //  }
     stages{
         stage('checkout'){
             steps {
@@ -14,6 +23,7 @@ pipeline{
         stage('Mvn version'){
             steps{
                 bat 'mvn --version'
+                bat 'dotnet --version'
             }
         }
         stage('Build'){
@@ -22,22 +32,49 @@ pipeline{
                 bat 'java -cp Demo/target/Demo-1.0-SNAPSHOT.jar com.Demo.app.App > Reports.txt'
             }
         }
+        stage('Unit test') {
+            steps {
+              //  configFileProvider([configFile(fileId: "${env.MV_CONF}", variable: 'MAVEN_SETTINGS')]) {
+                        bat "mvn test " //${MAVEN_SETTINGS}"
+                  //      dir('target/site/munit/coverage') {
+                        //publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './', reportFiles: 'summary.html', reportName: 'HTML Summary Report', reportTitles: 'Summary'])
+                    //}
+                //}
+            }
+        }
         stage('SonarQube Scanner'){
             steps{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
+                    def SonarQubeUrl = 'http://localhost:9000/dashboard?id=';  
                     withSonarQubeEnv('SonarQube'){
-                        //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
-                        //bat 'mvn clean verify sonar:sonar'
-                        bat 'mvn sonar:sonar \
+                       bat 'sonar-scanner.bat -X  \
+                            -Dsonar.login=27260e67644bccebaf08bbb4fa5a1450218a965f \
+                            -Dsonar.sources=Demo \
                             -Dsonar.projectKey=CI \
-                            -Dsonar.host.url=http://localhost:9000 \
-                            -Dsonar.login=87adf83b237138ad1084993059b12735a75bd04b'
-                        //bat 'mvn clean package sonar:sonar'
-
+                            -Dsonar.language=java,js \
+                            -Dsonar.java.libraries=. \
+                            -Dsonar.java.binaries=Demo/src \
+                            -Dsonar.host.url=http://localhost:9000 '
                     }
                 }
             }
+            /*post {
+                always{
+                    dir("${WORKSPACE}") {
+                        success {
+                            to: 'ernesto.jimenez@softtek.com',
+                            subject:"Test-SonarQube",
+                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: ${SonarQubeUrl}"
+                        }
+                        failure {
+                            to: "ernesto.jimenez@softtek.com",
+                            subject:"Test-SonarQube",
+                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: ${SonarQubeUrl}"
+                        }
+                    }
+                }
+            }*/
         }
         stage('Delivery'){
             steps{
@@ -46,8 +83,7 @@ pipeline{
         }
         stage('E-mail'){
             steps{
-                emailext body: '''Hello everyone
-                The scanning report is generated''', subject: 'reports', to: 'ernesto.jimenez@softtek.com'
+                emailext body: 'More details at:http://localhost:9000/dashboard?id=ErnestoJH90_CI', recipientProviders: [buildUser()], subject: 'Jenkins', to: 'ernesto.jimenez@softtek.com'
             }
         }
     }
