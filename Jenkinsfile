@@ -43,7 +43,7 @@ pipeline{
                 //}
             }
         }
-        stage('SonarQube Scanner'){
+        stage('SonarQube'){
             steps{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
