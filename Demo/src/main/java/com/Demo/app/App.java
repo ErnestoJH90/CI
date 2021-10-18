@@ -1,7 +1,7 @@
-package com.Demo.app;
+package org.Demo.app;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        logger.log.println("Hello World!");
     }
 }
