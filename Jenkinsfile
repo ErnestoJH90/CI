@@ -3,8 +3,8 @@ pipeline{
     agent any
     
     tools{
-        maven 'Mvn',
-        groovy 'Groovy'
+        maven 'Mvn'
+        //groovy 'Groovy'
     }
     //environment {
             //POM_FILE = readMavenPom()
