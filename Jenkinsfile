@@ -14,7 +14,7 @@ pipeline{
             //VERSION_ID = POM_FILE.getVersion()
             //PACKAGING_ID = POM_FILE.getPackaging()
             //DOWNLOAD_ARTIFACT_AUTH = credentials('DOWNLOAD_ARTIFACT_AUTH')
-      //  }
+        //}
     stages{
         stage('checkout'){
             steps {
@@ -64,9 +64,12 @@ pipeline{
                 always{
                     dir("${WORKSPACE}") {
                         success {
-                            mailto: "ernesto.jimenez@softtek.com",
-                            subject:"Test-SonarQube",
-                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: '${SonarQubeUrl}'"
+                            emailext body: 'Test-SonarQube is completed: '${WORKSPACE}', More details at: '${SonarQubeUrl}'',
+                                     subject: 'Test-SonarQube',
+                                     to: 'ernesto.jimenez@softtek.com'
+                            //to: "ernesto.jimenez@softtek.com",
+                            //subject:"Test-SonarQube",
+                            //body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: '${SonarQubeUrl}'"
                         }
                         failure {
                             to: "ernesto.jimenez@softtek.com",
