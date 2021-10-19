@@ -1,4 +1,4 @@
-
+def SonarQubeUrl = 'http://localhost:9000/dashboard?id=ErnestoJH90_CI'
 pipeline{
     agent any
     
@@ -47,7 +47,7 @@ pipeline{
             steps{
                 script{
                     def scannerHome = tool 'SonarQubeScanner';
-                    def SonarQubeUrl = 'http://localhost:9000/dashboard?id=';  
+                    //def SonarQubeUrl = 'http://localhost:9000/dashboard?id=';  
                     withSonarQubeEnv('SonarQube'){
                        bat 'mvn clean verify sonar:sonar \
                             -Dsonar.login=5c0c630e47d1263d7480869ee2a2d84afcb4096b \
@@ -60,13 +60,13 @@ pipeline{
                     }
                 }
             }
-            /*post {
+            post {
                 always{
                     dir("${WORKSPACE}") {
                         success {
                             to: 'ernesto.jimenez@softtek.com',
                             subject:"Test-SonarQube",
-                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: ${SonarQubeUrl}"
+                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: '${SonarQubeUrl}'"
                         }
                         failure {
                             to: "ernesto.jimenez@softtek.com",
@@ -75,7 +75,7 @@ pipeline{
                         }
                     }
                 }
-            }*/
+            }
         }
         stage('Delivery'){
             steps{
