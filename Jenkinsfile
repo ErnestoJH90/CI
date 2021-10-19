@@ -64,13 +64,13 @@ pipeline{
                 always{
                     dir("${WORKSPACE}") {
                         success {
-                            emailext to: 'ernesto.jimenez@softtek.com',
-                                     subject: 'Test-SonarQube',
-                                     body: 'Test-SonarQube is completed: '${WORKSPACE}', More details at: '${SonarQubeUrl}''
+                            //emailext to: 'ernesto.jimenez@softtek.com',
+                              //       subject: 'Test-SonarQube',
+                                //     body: 'Test-SonarQube is completed: '${WORKSPACE}', More details at: '${SonarQubeUrl}''
                                      
-                            //to: "ernesto.jimenez@softtek.com",
-                            //subject:"Test-SonarQube",
-                            //body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: '${SonarQubeUrl}'"
+                            to: "ernesto.jimenez@softtek.com",
+                            subject:"Test-SonarQube",
+                            body:"Test-SonarQube is completed: "${WORKSPACE}", More details at: '${SonarQubeUrl}'"
                         }
                         failure {
                             emailext to: 'ernesto.jimenez@softtek.com',
