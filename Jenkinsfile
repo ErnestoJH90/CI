@@ -58,7 +58,7 @@ pipeline{
                             -Dsonar.java.libraries=. \
                             -Dsonar.java.binaries=Demo/target \
                             -Dsonar.java.binaries=Demo/src \
-                            -Dsonar.jacoco.reportPath=target/jacoco.exec \
+                            -Dsonar.jacoco.reportPath=target/site/jacoco/jacoco.xml \
                             -Dsonar.host.url=http://localhost:9000 '
                     }
                 }
