@@ -1,4 +1,4 @@
-package org.Demo.app;
+package com.Demo.app;
 
 public class App {
     public static void main(String[] args) {
